@@ -2,10 +2,15 @@ import { LogLevel } from "@azure/msal-browser";
 
 export const msalConfig = {
     auth: {
-        clientId: "aa6628b4-258e-4568-bcd0-f526b792bdcd",
-        authority: "https://login.microsoftonline.com/aa232db2-7a78-4414-a529-33db9124cba7",
+        clientId: "61ce46dc-9a0b-4383-b1c9-a98876061159",
+        authority: "https://login.microsoftonline.com/8cca04a2-846d-45ce-affe-03b14adeff79",
         redirectUri: "http://localhost:3000",
     },
+    // auth: {
+    //     clientId: "aa6628b4-258e-4568-bcd0-f526b792bdcd",
+    //     authority: "https://login.microsoftonline.com/aa232db2-7a78-4414-a529-33db9124cba7",
+    //     redirectUri: "http://localhost:3000",
+    // },
     cache: {
         cacheLocation: "sessionStorage", // This configures where your cache will be stored
         storeAuthStateInCookie: false, // Set this to "true" if you are having issues on IE11 or Edge

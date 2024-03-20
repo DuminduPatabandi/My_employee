@@ -58,11 +58,20 @@ export const PageLayout = (props) => {
     <>
       <div className="bg-white">
         <div className="mx-auto max-w-2xl px-4  sm:px-6 sm:py-12 lg:max-w-7xl lg:px-8">
-            <Navigation />
-            {props.children}
+          <Navigation />
+          {props.children}
           {isAuthenticated ? (
             <>
-              <p className="text-2xl font-bold tracking-tight text-gray-900 mt-8">Employee Details</p>
+              <div className="flex items-center mt-16 justify-between">
+                <p className="text-2xl font-bold tracking-tight text-gray-900">
+                  Employee Details
+                </p>
+                <button
+                  className="text-gray-900 duration-700 py-2 hover:bg-gray-900 hover:text-white px-4 ring-1 ring-gray-900 font-medium"
+                >
+                  Add Employees
+                </button>
+              </div>
               <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                 {products.map((product) => (
                   <div key={product.id} className="group relative">

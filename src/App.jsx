@@ -31,7 +31,7 @@ const ProfileContent = () => {
             {graphData ? (
                 <ProfileData graphData={graphData} />
             ) : (
-                <button className='py-2 px-3 bg-slate-500 hover:bg-slate-700 rounded-md' onClick={RequestProfileData}>
+                <button className='text-gray-900 mt-2 duration-700 hover:bg-gray-900 hover:text-white py-2 px-4 ring-1 ring-gray-900 rounded-full' onClick={RequestProfileData}>
                     Request Profile
                 </button>
             )}
