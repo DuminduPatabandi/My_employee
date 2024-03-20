@@ -1,40 +1,107 @@
-/*
- * Copyright (c) Microsoft Corporation. All rights reserved.
- * Licensed under the MIT License.
- */
+import React from "react";
+// import Navbar from "react-bootstrap/Navbar";
 
-import React from 'react';
-import Navbar from 'react-bootstrap/Navbar';
+import { useIsAuthenticated } from "@azure/msal-react";
+import Navigation from "./Navigation";
 
-import { useIsAuthenticated } from '@azure/msal-react';
-import { SignInButton } from './SignInButton';
-import { SignOutButton } from './SignOutButton';
+const products = [
+  {
+    id: 1,
+    name: "Basic Tee",
+    href: "#",
+    imageSrc:
+      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+    imageAlt: "Front of men's Basic Tee in black.",
+    price: "$35",
+    color: "Black",
+  },
+  {
+    id: 1,
+    name: "Basic Tee",
+    href: "#",
+    imageSrc:
+      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+    imageAlt: "Front of men's Basic Tee in black.",
+    price: "$35",
+    color: "Black",
+  },
+  {
+    id: 1,
+    name: "Basic Tee",
+    href: "#",
+    imageSrc:
+      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+    imageAlt: "Front of men's Basic Tee in black.",
+    price: "$35",
+    color: "Black",
+  },
+  {
+    id: 1,
+    name: "Basic Tee",
+    href: "#",
+    imageSrc:
+      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+    imageAlt: "Front of men's Basic Tee in black.",
+    price: "$35",
+    color: "Black",
+  },
+];
 
 /**
  * Renders the navbar component with a sign-in or sign-out button depending on whether or not a user is authenticated
  * @param props
  */
 export const PageLayout = (props) => {
-    const isAuthenticated = useIsAuthenticated();
+  const isAuthenticated = useIsAuthenticated();
 
-    return (
-        <>
-            <Navbar bg="primary" variant="dark" className="navbarStyle">
-                <a className="navbar-brand" href="/">
-                    Microsoft Identity Platform
-                </a>
-                <div className="collapse navbar-collapse justify-content-end">
-                    {isAuthenticated ? <SignOutButton /> : <SignInButton />}
-                </div>
-            </Navbar>
-                <div className="title">
-                    <h5>
-                        Welcome to the Microsoft Authentication Library For JavaScript - React SPA
-                    </h5>
-                </div>
-                <div className="profileContent">
-                    {props.children}
-                </div>
-        </>
-    );
+  return (
+    <>
+      <div className="bg-white">
+        <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+          {isAuthenticated ? (
+            <>
+              <Navigation />
+              <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                {products.map((product) => (
+                  <div key={product.id} className="group relative">
+                    <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                      <img
+                        src={product.imageSrc}
+                        alt={product.imageAlt}
+                        className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                      />
+                    </div>
+                    <div className="mt-4 flex justify-between">
+                      <div>
+                        <h3 className="text-sm text-gray-700">
+                          <a href={product.href}>
+                            <span
+                              aria-hidden="true"
+                              className="absolute inset-0"
+                            />
+                            {product.name}
+                          </a>
+                        </h3>
+                        <p className="mt-1 text-sm text-gray-500">
+                          {product.color}
+                        </p>
+                      </div>
+                      <p className="text-sm font-medium text-gray-900">
+                        {product.price}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <>
+              <Navigation />
+              <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"></div>
+            </>
+          )}
+        </div>
+      </div>
+    </>
+  );
 };

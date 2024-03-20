@@ -8,7 +8,7 @@ import { MsalProvider } from '@azure/msal-react';
 import { msalConfig } from './authConfig';
 
 // Bootstrap components
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 const msalInstance = new PublicClientApplication(msalConfig);
 
