@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+//import App from './App2';
+import { BrowserRouter } from 'react-router-dom';
 
 import { PublicClientApplication } from '@azure/msal-browser';
 import { MsalProvider } from '@azure/msal-react';
@@ -24,3 +26,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
       </MsalProvider>
   </React.StrictMode>
 );
+
+// root.render(
+//     <React.StrictMode>  
+//             <App />         
+//     </React.StrictMode>
+//   );

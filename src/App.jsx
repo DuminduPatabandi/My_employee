@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 
-import { PageLayout } from './components/PageLayout';
+import PageLayout from './components/PageLayout';
 import { loginRequest } from './authConfig';
 import { callMsGraph } from './graph';
 import { ProfileData } from './components/ProfileData';
+//import PageLayout from './components/PageLayout';
+import Home from './components/Home';
 
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from '@azure/msal-react';
 import './App.css';
 import Button from 'react-bootstrap/Button';
+import { useNavigate, BrowserRouter, Route, Routes } from 'react-router-dom';
 
 /**
  * Renders information about the signed-in user or a button to retrieve data about the user
@@ -16,6 +19,8 @@ import Button from 'react-bootstrap/Button';
 const ProfileContent = () => {
     const { instance, accounts } = useMsal();
     const [graphData, setGraphData] = useState(null);
+
+    const navigate = useNavigate();
 
     function RequestProfileData() {
         // Silently acquires an access token which is then attached to a request for MS Graph data
@@ -26,11 +31,18 @@ const ProfileContent = () => {
             })
             .then((response) => {
                 callMsGraph(response.accessToken).then((response) => setGraphData(response));
+                console.log("This is the token", response.accessToken);
             });
     }
 
     return (
         <>
+            {/* <BrowserRouter>
+                <Routes>
+                    <Route path="/" exact element={<Home accountName={accounts[0].name}/>} />
+                    <Route path="/employee-details" element={<PageLayout />} />
+                </Routes>
+            </BrowserRouter> */}
             <h5 className="profileContent">Welcome {accounts[0].name}</h5>
             {graphData ? (
                 <ProfileData graphData={graphData} />
