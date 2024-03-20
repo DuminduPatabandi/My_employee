@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { PageLayout } from './components/PageLayout';
 import { loginRequest } from './authConfig';
@@ -7,18 +7,13 @@ import { ProfileData } from './components/ProfileData';
 
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from '@azure/msal-react';
 import './App.css';
-import Button from 'react-bootstrap/Button';
-
-/**
- * Renders information about the signed-in user or a button to retrieve data about the user
- */
+import Unauthenticated from './components/Unauthenticated';
 
 const ProfileContent = () => {
     const { instance, accounts } = useMsal();
     const [graphData, setGraphData] = useState(null);
 
     function RequestProfileData() {
-        // Silently acquires an access token which is then attached to a request for MS Graph data
         instance
             .acquireTokenSilent({
                 ...loginRequest,
@@ -31,21 +26,20 @@ const ProfileContent = () => {
 
     return (
         <>
-            <h5 className="profileContent">Welcome {accounts[0].name}</h5>
+            <p className="text-[6rem] font-bold tracking-tight text-gray-900 mt-12">Hi</p>
+            <h5 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl -mt-8 mb-4">{accounts[0].name}</h5>
             {graphData ? (
                 <ProfileData graphData={graphData} />
             ) : (
-                <Button variant="secondary" onClick={RequestProfileData}>
+                <button className='py-2 px-3 bg-slate-500 hover:bg-slate-700 rounded-md' onClick={RequestProfileData}>
                     Request Profile
-                </Button>
+                </button>
             )}
         </>
     );
 };
 
-/**
- * If a user is authenticated the ProfileContent component above is rendered. Otherwise a message indicating a user is not authenticated is rendered.
- */
+
 const MainContent = () => {
     return (
         <div className="App">
@@ -54,7 +48,7 @@ const MainContent = () => {
             </AuthenticatedTemplate>
 
             <UnauthenticatedTemplate>
-                <h5 className="card-title">Please sign-in to see your profile information.</h5>
+                <Unauthenticated />
             </UnauthenticatedTemplate>
         </div>
     );
