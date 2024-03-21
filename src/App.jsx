@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 import { PageLayout } from './components/PageLayout';
 import { loginRequest } from './authConfig';
@@ -13,6 +13,23 @@ const ProfileContent = () => {
     const { instance, accounts } = useMsal();
     const [graphData, setGraphData] = useState(null);
 
+    useEffect(()=>{
+        console.log("run");
+        instance
+            .acquireTokenSilent({
+                ...loginRequest,
+                account: accounts[0],
+            })
+            .then((response) => {
+                sessionStorage.setItem('accessToken',response.accessToken);
+                console.log("ZIM",response.accessToken);
+            })
+            .catch(()=>{
+                sessionStorage.setItem('accessToken',null);
+            });
+        
+    },[])
+
     function RequestProfileData() {
         instance
             .acquireTokenSilent({
@@ -20,7 +37,9 @@ const ProfileContent = () => {
                 account: accounts[0],
             })
             .then((response) => {
+                console.log("Token TOken",response.accessToken);
                 callMsGraph(response.accessToken).then((response) => setGraphData(response));
+
             });
     }
 

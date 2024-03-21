@@ -6,6 +6,7 @@ export const SignOutButton = () => {
   const { instance } = useMsal();
 
   const handleLogout = () => {
+    sessionStorage.setItem('accessToken',null);
     instance.logoutPopup({
       postLogoutRedirectUri: "/",
       mainWindowRedirectUri: "/",

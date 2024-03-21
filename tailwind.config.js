@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["../public/index.html", "./src/**/*.{js,jsx}",'node_modules/preline/dist/*.js'],
+  content: ["../public/index.html", "./src/**/*.{js,jsx}",'node_modules/preline/dist/*.js',"./node_modules/flowbite/**/*.js"],
   mode: "jit",
   theme: {
     extend: {
@@ -26,6 +26,7 @@ module.exports = {
   plugins: [
     require('preline/plugin'),
     require('@tailwindcss/aspect-ratio'),
+    require('flowbite/plugin')
   ],
   
 };
