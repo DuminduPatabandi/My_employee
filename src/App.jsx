@@ -8,10 +8,12 @@ import { ProfileData } from './components/ProfileData';
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from '@azure/msal-react';
 import './App.css';
 import Unauthenticated from './components/Unauthenticated';
+import UserDetails from './components/UserDetails';
 
 const ProfileContent = () => {
     const { instance, accounts } = useMsal();
     const [graphData, setGraphData] = useState(null);
+    const [token,setToken] = useState(null);
 
     useEffect(()=>{
         console.log("run",instance);
@@ -22,6 +24,7 @@ const ProfileContent = () => {
             })
             .then((response) => {
                 sessionStorage.setItem('accessToken',response.accessToken);
+                setToken(response.accessToken);
                 console.log("ZIM",response.accessToken);
             })
             .catch(()=>{
@@ -54,6 +57,10 @@ const ProfileContent = () => {
                     Request Profile
                 </button>
             )}
+            {token !== null && (
+                <UserDetails/>
+            )}
+           
         </>
     );
 };
@@ -75,7 +82,7 @@ const MainContent = () => {
 
 export default function App() {
     return (
-        <PageLayout>
+        <PageLayout >
             <MainContent />
         </PageLayout>
     );
