@@ -1,6 +1,6 @@
 import React from "react";
 import { useMsal } from "@azure/msal-react";
-import { loginRequest } from "../authConfig";
+import { loginRequestV2 } from "../authConfig";
 import { CheckIcon} from "@heroicons/react/20/solid";
 
 /**
@@ -10,7 +10,7 @@ export const SignInButton = () => {
   const { instance } = useMsal();
 
   const handleLogin = () => {
-    instance.loginPopup(loginRequest).catch((e) => {});
+    instance.loginPopup(loginRequestV2).catch((e) => {});
   };
 
   return (

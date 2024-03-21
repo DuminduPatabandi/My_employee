@@ -7,8 +7,8 @@ export const msalConfig = {
         redirectUri: "http://localhost:3000",
     },
     // auth: {
-    //     clientId: "aa6628b4-258e-4568-bcd0-f526b792bdcd",
-    //     authority: "https://login.microsoftonline.com/aa232db2-7a78-4414-a529-33db9124cba7",
+    //     clientId: "467ede59-6039-42d7-a3b2-d3cf8f350e62",
+    //     authority: "https://login.microsoftonline.com/8cca04a2-846d-45ce-affe-03b14adeff79",
     //     redirectUri: "http://localhost:3000",
     // },
     cache: {
@@ -48,8 +48,14 @@ export const msalConfig = {
  * For more information about OIDC scopes, visit: 
  * https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
  */
-export const loginRequest = {
+export const loginRequestV2 = {
+    //scopes: ["User.Read"]
+    scopes :["api://467ede59-6039-42d7-a3b2-d3cf8f350e62/Scope.read"]
+};
+
+export const loginRequestV1 = {
     scopes: ["User.Read"]
+    //scopes :["api://467ede59-6039-42d7-a3b2-d3cf8f350e62/Scope.read"]
 };
 
 /**

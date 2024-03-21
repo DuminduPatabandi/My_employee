@@ -1,7 +1,7 @@
 import { useState,useEffect } from 'react';
 
 import { PageLayout } from './components/PageLayout';
-import { loginRequest } from './authConfig';
+import { loginRequestV2,loginRequestV1 } from './authConfig';
 import { callMsGraph } from './graph';
 import { ProfileData } from './components/ProfileData';
 
@@ -14,10 +14,10 @@ const ProfileContent = () => {
     const [graphData, setGraphData] = useState(null);
 
     useEffect(()=>{
-        console.log("run");
+        console.log("run",instance);
         instance
             .acquireTokenSilent({
-                ...loginRequest,
+                ...loginRequestV2,
                 account: accounts[0],
             })
             .then((response) => {
@@ -33,7 +33,7 @@ const ProfileContent = () => {
     function RequestProfileData() {
         instance
             .acquireTokenSilent({
-                ...loginRequest,
+                ...loginRequestV1,
                 account: accounts[0],
             })
             .then((response) => {
